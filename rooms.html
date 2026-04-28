@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Rooms — Madina Hotel & Residences</title>
+  <meta name="description" content="Browse all room types at Madina Hotel & Residences. Smart Premium, Classique, and Economy options from ₦45,000 per night." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/rooms.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">madina</span>
+        <span class="nav-subtitle">Hotel &amp; Residence</span>
+      </a>
+
+      <div class="nav-overlay" id="navOverlay"></div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rooms.html" class="active">Our Rooms</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="index.html#meeting">Meeting &amp; Events</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="rooms.html" class="btn btn-primary">Book a Room</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label" style="color: var(--color-gold);">Madina Hotel &amp; Residences</p>
+      <h1>Our Rooms</h1>
+      <p>Select your preferred dates and room type below</p>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <section class="filter-section">
+    <div class="container">
+      <div class="filter-bar booking-bar">
+        <div class="booking-field">
+          <label for="checkIn">Check In</label>
+          <input type="date" id="checkIn" name="checkIn" />
+        </div>
+        <div class="booking-field">
+          <label for="checkOut">Check Out</label>
+          <input type="date" id="checkOut" name="checkOut" />
+        </div>
+        <div class="booking-field">
+          <label for="roomType">Room Type</label>
+          <select id="roomType" name="roomType">
+            <option value="all">All Rooms</option>
+            <option value="premium">Smart Premium</option>
+            <option value="classique">Smart Classique</option>
+            <option value="economy">Smart Economy</option>
+          </select>
+        </div>
+        <div class="booking-field">
+          <label for="guests">Guests</label>
+          <select id="guests" name="guests">
+            <option value="1">1 Adult</option>
+            <option value="2" selected>2 Adults</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="applyFilter">Apply</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS GRID -->
+  <section class="rooms-section">
+    <div class="container">
+
+      <div class="rooms-grid" id="roomsGrid">
+
+        <!-- SMART PREMIUM -->
+        <div class="room-card" data-type="premium">
+          <div class="room-card-image-wrap">
+            <img
+              class="room-card-image"
+              src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80"
+              alt="Smart Premium Room"
+            />
+            <span class="room-card-badge">Most Popular</span>
+          </div>
+          <div class="room-card-body">
+            <h3 class="room-card-title">Smart Premium</h3>
+            <div class="room-card-meta">
+              <span>👤 2 Adults</span>
+              <span>📐 50.3 m²</span>
+              <span>🛏 6×7 Bed</span>
+            </div>
+            <p class="room-card-desc">
+              Our most spacious offering — a premium room featuring a king-size
+              6×7 bed, expansive living area, work desk, and premium finishes.
+              Perfect for business and leisure guests who want the very best.
+            </p>
+            <div class="room-card-amenities">
+              <span class="amenity-tag">Free WiFi</span>
+              <span class="amenity-tag">AC</span>
+              <span class="amenity-tag">Water Heater</span>
+              <span class="amenity-tag">Breakfast</span>
+              <span class="amenity-tag">Flat Screen TV</span>
+              <span class="amenity-tag">Work Desk</span>
+            </div>
+            <div class="room-card-footer">
+              <div>
+                <div class="room-price">₦65,000 <span>/ Night</span></div>
+              </div>
+              <a href="room-detail.html?type=premium" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SMART CLASSIQUE -->
+        <div class="room-card" data-type="classique">
+          <div class="room-card-image-wrap">
+            <img
+              class="room-card-image"
+              src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80"
+              alt="Smart Classique Room"
+            />
+          </div>
+          <div class="room-card-body">
+            <h3 class="room-card-title">Smart Classique</h3>
+            <div class="room-card-meta">
+              <span>👤 2 Adults</span>
+              <span>📐 43.4 m²</span>
+              <span>🛏 6×6 Bed</span>
+            </div>
+            <p class="room-card-desc">
+              Elegant and refined, the Classique offers a queen-size 6×6 bed and
+              carefully curated furnishings. An ideal balance of comfort and
+              sophistication for every kind of traveller.
+            </p>
+            <div class="room-card-amenities">
+              <span class="amenity-tag">Free WiFi</span>
+              <span class="amenity-tag">AC</span>
+              <span class="amenity-tag">Water Heater</span>
+              <span class="amenity-tag">Breakfast</span>
+              <span class="amenity-tag">Flat Screen TV</span>
+              <span class="amenity-tag">Work Desk</span>
+            </div>
+            <div class="room-card-footer">
+              <div>
+                <div class="room-price">₦55,000 <span>/ Night</span></div>
+              </div>
+              <a href="room-detail.html?type=classique" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SMART ECONOMY -->
+        <div class="room-card" data-type="economy">
+          <div class="room-card-image-wrap">
+            <img
+              class="room-card-image"
+              src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=700&q=80"
+              alt="Smart Economy Room"
+            />
+            <span class="room-card-badge" style="background: var(--color-gold);">Best Value</span>
+          </div>
+          <div class="room-card-body">
+            <h3 class="room-card-title">Smart Economy</h3>
+            <div class="room-card-meta">
+              <span>👤 2 Adults</span>
+              <span>📐 30.8 m²</span>
+              <span>🛏 6×4 Bed</span>
+            </div>
+            <p class="room-card-desc">
+              Comfortable and practical, the Economy room delivers everything
+              you need for a restful stay — WiFi, AC, hot water — at excellent
+              value for money.
+            </p>
+            <div class="room-card-amenities">
+              <span class="amenity-tag">Free WiFi</span>
+              <span class="amenity-tag">AC</span>
+              <span class="amenity-tag">Water Heater</span>
+              <span class="amenity-tag">Breakfast</span>
+              <span class="amenity-tag">Flat Screen TV</span>
+            </div>
+            <div class="room-card-footer">
+              <div>
+                <div class="room-price">₦45,000 <span>/ Night</span></div>
+              </div>
+              <a href="room-detail.html?type=economy" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /rooms-grid -->
+
+      <!-- No results message (hidden by default) -->
+      <div id="noResults" style="display:none; text-align:center; padding: 60px 0;">
+        <p style="font-size:1.1rem; color: var(--color-text-muted);">
+          No rooms match your filter. <a href="rooms.html" style="color: var(--color-olive); text-decoration:underline;">Reset filters</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POLICIES BAR -->
+  <section class="section section--cream">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align:center;">
+        <div>
+          <div style="font-size: 1.6rem; margin-bottom: 8px;">🕐</div>
+          <h4 style="font-size: 0.85rem; margin-bottom: 4px;">Check-In</h4>
+          <p style="font-size: 0.8rem;">From 1:00 PM</p>
+        </div>
+        <div>
+          <div style="font-size: 1.6rem; margin-bottom: 8px;">🚪</div>
+          <h4 style="font-size: 0.85rem; margin-bottom: 4px;">Check-Out</h4>
+          <p style="font-size: 0.8rem;">By 12:00 PM</p>
+        </div>
+        <div>
+          <div style="font-size: 1.6rem; margin-bottom: 8px;">❌</div>
+          <h4 style="font-size: 0.85rem; margin-bottom: 4px;">Cancellation</h4>
+          <p style="font-size: 0.8rem;">Free up to 24hrs before</p>
+        </div>
+        <div>
+          <div style="font-size: 1.6rem; margin-bottom: 8px;">💳</div>
+          <h4 style="font-size: 0.85rem; margin-bottom: 4px;">Payment</h4>
+          <p style="font-size: 0.8rem;">Card, Transfer, Cash, USSD</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">madina</div>
+          <div class="footer-tagline">Hotel &amp; Residence · Uyo</div>
+          <p class="footer-desc">A sanctuary where comfort meets elegance, nestled in the heart of Uyo, Akwa Ibom.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Our Rooms</a></li>
+            <li><a href="index.html#gallery">Gallery</a></li>
+            <li><a href="index.html#meeting">Meeting &amp; Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Room Types</h5>
+          <ul>
+            <li><a href="room-detail.html?type=premium">Smart Premium — ₦65,000</a></li>
+            <li><a href="room-detail.html?type=classique">Smart Classique — ₦55,000</a></li>
+            <li><a href="room-detail.html?type=economy">Smart Economy — ₦45,000</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact Us</h5>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+234 802 303 9293</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>bookings@madinahotelandresidences.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>32 Abel Damina St, Uyo, Akwa Ibom</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Madina Hotel &amp; Residences. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

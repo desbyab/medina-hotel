@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madina Hotel & Residences — Uyo, Akwa Ibom</title>
+  <meta name="description" content="Experience luxury and comfort at Madina Hotel & Residences, nestled in the heart of Uyo, Akwa Ibom, Nigeria." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+  <!-- =====================
+       NAVIGATION
+  ========================== -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">madina</span>
+        <span class="nav-subtitle">Hotel &amp; Residence</span>
+      </a>
+
+      <div class="nav-overlay" id="navOverlay"></div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="rooms.html">Our Rooms</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#meeting">Meeting &amp; Events</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="rooms.html" class="btn btn-primary">Book a Room</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =====================
+       HERO SECTION
+  ========================== -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1800&q=85"
+        alt="Madina Hotel interior"
+        class="hero-bg-img"
+      />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Welcome to Madina</p>
+        <h1 class="hero-title">
+          Experience comfort<br />&amp; convenience<br />
+          <em>at our hotel in Uyo</em>
+        </h1>
+        <p class="hero-subtitle">Where refined luxury meets the horizon.</p>
+      </div>
+
+      <!-- BOOKING BAR -->
+      <div class="booking-bar hero-booking">
+        <div class="booking-field">
+          <label for="checkIn">Check In</label>
+          <input type="date" id="checkIn" name="checkIn" />
+        </div>
+
+        <div class="booking-field">
+          <label for="checkOut">Check Out</label>
+          <input type="date" id="checkOut" name="checkOut" />
+        </div>
+
+        <div class="booking-field">
+          <label for="roomType">Room Type</label>
+          <select id="roomType" name="roomType">
+            <option value="">Any Type</option>
+            <option value="premium">Smart Premium</option>
+            <option value="classique">Smart Classique</option>
+            <option value="economy">Smart Economy</option>
+          </select>
+        </div>
+
+        <div class="booking-field">
+          <label for="guests">Guests</label>
+          <select id="guests" name="guests">
+            <option value="1">1 Adult</option>
+            <option value="2" selected>2 Adults</option>
+            <option value="3">3 Adults</option>
+            <option value="4">4 Adults</option>
+          </select>
+        </div>
+
+        <a href="rooms.html" id="viewRatesBtn" class="btn btn-primary">
+          View Rates
+        </a>
+      </div>
+    </div>
+
+    <!-- scroll indicator -->
+    <div class="hero-scroll">
+      <span></span>
+      <p>Scroll</p>
+    </div>
+  </section>
+
+  <!-- =====================
+       WELCOME SECTION
+  ========================== -->
+  <section class="section" id="welcome">
+    <div class="container welcome-grid">
+      <div class="welcome-text">
+        <p class="section-label">Welcome to Madina Hotel &amp; Residents</p>
+        <h2 class="section-title">
+          Indulge in Luxury,<br />
+          <em>About Exclusive Living.</em><br />
+          Elevated Experiences
+        </h2>
+        <div class="divider"></div>
+        <p>
+          At Madina Hotel &amp; Residences, we believe peace is the ultimate luxury.
+          Nestled in the heart of Uyo, our spaces are designed for every kind of
+          guest — the traveler seeking rest, the local longing for an escape, or
+          the family who deserves a long-needed vacation.
+        </p>
+        <p style="margin-top:16px;">
+          From refined rooms to personalized care, we create a sanctuary where
+          comfort meets elegance, and every moment feels effortless.
+        </p>
+        <a href="rooms.html" class="btn btn-outline" style="margin-top:32px;">
+          Discover Our Rooms
+        </a>
+      </div>
+
+      <div class="welcome-images">
+        <div class="welcome-img-main">
+          <img
+            src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80"
+            alt="Elegant hotel room"
+          />
+        </div>
+        <div class="welcome-img-secondary">
+          <img
+            src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=500&q=80"
+            alt="Hotel lounge"
+          />
+          <div class="welcome-stat">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Room Categories</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       GALLERY
+  ========================== -->
+  <section class="section section--cream" id="gallery">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <p class="section-label">Our Gallery</p>
+          <h2 class="section-title">A Glimpse of <em>Madina</em></h2>
+          <div class="divider"></div>
+        </div>
+        <a href="#gallery" class="btn btn-outline">View All Gallery</a>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-item--tall">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80" alt="Hotel room" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Lobby" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="Suite" />
+        </div>
+        <div class="gallery-item gallery-item--wide">
+          <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1000&q=80" alt="Pool" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Restaurant" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       ROOMS PREVIEW
+  ========================== -->
+  <section class="section" id="rooms">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <p class="section-label">Rooms &amp; Suites</p>
+          <h2 class="section-title">Choose Your <em>Perfect Stay</em></h2>
+          <div class="divider"></div>
+          <p class="section-subtitle">
+            Every room at Madina is thoughtfully designed to offer maximum
+            comfort, modern amenities, and a peaceful retreat.
+          </p>
+        </div>
+        <a href="rooms.html" class="btn btn-outline">Discover All</a>
+      </div>
+
+      <div class="rooms-preview-grid">
+        <!-- Room Card 1 -->
+        <div class="room-card">
+          <div class="room-card-image-wrap">
+            <img
+              class="room-card-image"
+              src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80"
+              alt="Smart Premium Room"
+            />
+            <span class="room-card-badge">Most Popular</span>
+          </div>
+          <div class="room-card-body">
+            <h3 class="room-card-title">Smart Premium</h3>
+            <div class="room-card-meta">
+              <span>👤 2 Adults</span>
+              <span>📐 50.3 m²</span>
+              <span>🛏 6×7 Bed</span>
+            </div>
+            <p class="room-card-desc">
+              Our most spacious offering, the Premium room features a king-size
+              6×7 bed, expansive living area, and premium finishes throughout.
+            </p>
+            <div class="room-card-amenities">
+              <span class="amenity-tag">WiFi</span>
+              <span class="amenity-tag">AC</span>
+              <span class="amenity-tag">Water Heater</span>
+              <span class="amenity-tag">Breakfast</span>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price">₦65,000 <span>/ Night</span></div>
+              <a href="room-detail.html?type=premium" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room Card 2 -->
+        <div class="room-card">
+          <div class="room-card-image-wrap">
+            <img
+              class="room-card-image"
+              src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80"
+              alt="Smart Classique Room"
+            />
+          </div>
+          <div class="room-card-body">
+            <h3 class="room-card-title">Smart Classique</h3>
+            <div class="room-card-meta">
+              <span>👤 2 Adults</span>
+              <span>📐 43.4 m²</span>
+              <span>🛏 6×6 Bed</span>
+            </div>
+            <p class="room-card-desc">
+              Elegant and refined, the Classique offers a queen-size 6×6 bed
+              and carefully curated furnishings for a sophisticated stay.
+            </p>
+            <div class="room-card-amenities">
+              <span class="amenity-tag">WiFi</span>
+              <span class="amenity-tag">AC</span>
+              <span class="amenity-tag">Water Heater</span>
+              <span class="amenity-tag">Breakfast</span>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price">₦55,000 <span>/ Night</span></div>
+              <a href="room-detail.html?type=classique" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room Card 3 -->
+        <div class="room-card">
+          <div class="room-card-image-wrap">
+            <img
+              class="room-card-image"
+              src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=700&q=80"
+              alt="Smart Economy Room"
+            />
+          </div>
+          <div class="room-card-body">
+            <h3 class="room-card-title">Smart Economy</h3>
+            <div class="room-card-meta">
+              <span>👤 2 Adults</span>
+              <span>📐 30.8 m²</span>
+              <span>🛏 6×4 Bed</span>
+            </div>
+            <p class="room-card-desc">
+              Comfortable and practical, the Economy room offers everything you
+              need for a restful stay at excellent value for money.
+            </p>
+            <div class="room-card-amenities">
+              <span class="amenity-tag">WiFi</span>
+              <span class="amenity-tag">AC</span>
+              <span class="amenity-tag">Water Heater</span>
+              <span class="amenity-tag">Breakfast</span>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price">₦45,000 <span>/ Night</span></div>
+              <a href="room-detail.html?type=economy" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       AMENITIES STRIP
+  ========================== -->
+  <section class="section section--cream" id="amenities">
+    <div class="container">
+      <div style="text-align:center; margin-bottom: 48px;">
+        <p class="section-label">What We Offer</p>
+        <h2 class="section-title">World-Class <em>Amenities</em></h2>
+        <div class="divider" style="margin: 16px auto 0;"></div>
+      </div>
+
+      <div class="amenities-strip">
+        <div class="amenity-pill">
+          <div class="amenity-icon">🏊</div>
+          <span>Swimming Pool</span>
+        </div>
+        <div class="amenity-pill">
+          <div class="amenity-icon">🍽</div>
+          <span>Restaurant</span>
+        </div>
+        <div class="amenity-pill">
+          <div class="amenity-icon">🏋️</div>
+          <span>Gym</span>
+        </div>
+        <div class="amenity-pill">
+          <div class="amenity-icon">📶</div>
+          <span>Free WiFi</span>
+        </div>
+        <div class="amenity-pill">
+          <div class="amenity-icon">🧖</div>
+          <span>Spa &amp; Saloon</span>
+        </div>
+        <div class="amenity-pill">
+          <div class="amenity-icon">🏛️</div>
+          <span>Conference Hall</span>
+        </div>
+        <div class="amenity-pill">
+          <div class="amenity-icon">🛒</div>
+          <span>Mini Mart</span>
+        </div>
+        <div class="amenity-pill">
+          <div class="amenity-icon">☕</div>
+          <span>Confectionery</span>
+        </div>
+        <div class="amenity-pill">
+          <div class="amenity-icon">💼</div>
+          <span>Work Space</span>
+        </div>
+        <div class="amenity-pill">
+          <div class="amenity-icon">🍹</div>
+          <span>Pool Side Bar</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       MEETING & SOCIALS
+  ========================== -->
+  <section class="section" id="meeting">
+    <div class="container meeting-grid">
+      <div class="meeting-images">
+        <img
+          src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80"
+          alt="Conference room"
+          class="meeting-img-main"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=500&q=80"
+          alt="Event space"
+          class="meeting-img-secondary"
+        />
+      </div>
+      <div class="meeting-text">
+        <p class="section-label">Engage and Connect</p>
+        <h2 class="section-title">Meeting &amp; <em>Socials</em></h2>
+        <div class="divider"></div>
+        <p>
+          From intimate boardroom meetings to grand celebrations, Madina offers
+          versatile event spaces equipped with everything you need — projector,
+          public address system, and professional décor support.
+        </p>
+        <ul class="meeting-features">
+          <li>✓ Public Address System</li>
+          <li>✓ Projector &amp; Screen</li>
+          <li>✓ Decoration Support</li>
+          <li>✓ Birthday &amp; Get-Together Spaces</li>
+          <li>✓ Photo Shoot Ambiance</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" style="margin-top:32px;">
+          Enquire Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       RESTAURANT
+  ========================== -->
+  <section class="restaurant-banner">
+    <div class="restaurant-bg">
+      <img
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80"
+        alt="Madina Restaurant"
+      />
+      <div class="restaurant-overlay"></div>
+    </div>
+    <div class="container restaurant-content">
+      <p class="section-label" style="color: var(--color-gold);">Dining</p>
+      <h2 style="color: white; font-size: clamp(2rem, 4vw, 3rem);">
+        Madina <em>Restaurant</em>
+      </h2>
+      <p style="color: rgba(255,255,255,0.75); max-width: 480px; margin: 16px 0 32px;">
+        African and Continental cuisine prepared daily, open 24 hours every day.
+        From local favourites to international dishes, your appetite is always welcome.
+      </p>
+      <div class="restaurant-tags">
+        <span>🍛 African Cuisine</span>
+        <span>🍝 Continental Dishes</span>
+        <span>🕐 Open 24 Hours</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       BOOK YOUR STAY CTA
+  ========================== -->
+  <section class="cta-section section--dark">
+    <div class="container cta-inner">
+      <div>
+        <p class="section-label" style="color: var(--color-gold);">Book Your Stay</p>
+        <h2 style="color: white;">
+          Discover <em>The Experience</em>
+        </h2>
+        <p style="color: rgba(255,255,255,0.7); margin-top: 12px; max-width: 480px;">
+          A stay defined by comfort, clarity, and thoughtful design, created to
+          help you experience Madina Hotel &amp; Residence.
+        </p>
+      </div>
+      <a href="rooms.html" class="btn btn-gold" style="font-size:0.9rem; padding: 16px 36px;">
+        Book Now
+      </a>
+    </div>
+  </section>
+
+  <!-- =====================
+       FOOTER
+  ========================== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand col -->
+        <div>
+          <div class="footer-logo">madina</div>
+          <div class="footer-tagline">Hotel &amp; Residence · Uyo</div>
+          <p class="footer-desc">
+            A sanctuary where comfort meets elegance. Nestled in the heart of
+            Uyo, Akwa Ibom, Nigeria.
+          </p>
+          <div style="display:flex; gap: 12px;">
+            <a href="https://wa.me/2348023039293" target="_blank" class="btn btn-outline" style="color:rgba(255,255,255,0.7); border-color:rgba(255,255,255,0.2); font-size:0.7rem; padding: 8px 16px;">
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Our Rooms</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#meeting">Meeting &amp; Events</a></li>
+            <li><a href="#amenities">Amenities</a></li>
+          </ul>
+        </div>
+
+        <!-- Rooms -->
+        <div class="footer-col">
+          <h5>Room Types</h5>
+          <ul>
+            <li><a href="room-detail.html?type=premium">Smart Premium — ₦65,000</a></li>
+            <li><a href="room-detail.html?type=classique">Smart Classique — ₦55,000</a></li>
+            <li><a href="room-detail.html?type=economy">Smart Economy — ₦45,000</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h5>Contact Us</h5>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <a href="mailto:bookings@madinahotelandresidences.com">bookings@madinahotelandresidences.com</a><br/>
+              <a href="mailto:info@madinahotelandresidences.com">info@madinahotelandresidences.com</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <a href="tel:+2348023039293">+234 802 303 9293</a><br/>
+              <a href="tel:+2348067428925">+234 806 742 8925</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>32 Abel Damina Street, Uyo,<br/>Akwa Ibom, Nigeria</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Madina Hotel &amp; Residences. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notification (shared) -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>
