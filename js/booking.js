@@ -33,10 +33,10 @@ const ROOMS = {
       { icon: '🌅', label: 'City View' },
     ],
     images: [
-      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&q=85',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=700&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=700&q=80',
+      'assets/images/room-premium-1.jpeg',
+      'assets/images/room-classique-1.jpeg',
+      'assets/images/room-premium-2.jpeg',
+      'assets/images/room-premium-3.jpeg',
     ],
   },
 
@@ -63,10 +63,10 @@ const ROOMS = {
       { icon: '🧴', label: 'Quality Toiletries' },
     ],
     images: [
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1400&q=85',
-      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80',
-      'https://images.unsplash.com/photo-1505693314120-0d443867891c?w=700&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=80',
+      'assets/images/room-classique-1.jpeg',
+      'assets/images/room-classique-2.jpeg',
+      'assets/images/room-classique-3.jpeg',
+      'assets/images/lobby-chandelier.jpeg',
     ],
   },
 
@@ -92,10 +92,10 @@ const ROOMS = {
       { icon: '🧴', label: 'Quality Toiletries' },
     ],
     images: [
-      'https://images.unsplash.com/photo-1505693314120-0d443867891c?w=1400&q=85',
-      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=700&q=80',
+      'assets/images/room-economy-1.jpeg',
+      'assets/images/room-classique-2.jpeg',
+      'assets/images/room-classique-3.jpeg',
+      'assets/images/exterior-lawn.jpeg',
     ],
   },
 };
