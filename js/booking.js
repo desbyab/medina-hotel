@@ -64,9 +64,9 @@ const ROOMS = {
     ],
     images: [
       'assets/images/room-classique-1.jpeg',
-      'assets/images/room-classique-2.jpeg',
-      'assets/images/room-classique-3.jpeg',
-      'assets/images/lobby-chandelier.jpeg',
+      'assets/images/room-premium-1.jpeg',
+      'assets/images/room-premium-2.jpeg',
+      'assets/images/reception-2.jpeg',
     ],
   },
 
@@ -93,9 +93,9 @@ const ROOMS = {
     ],
     images: [
       'assets/images/room-economy-1.jpeg',
-      'assets/images/room-classique-2.jpeg',
-      'assets/images/room-classique-3.jpeg',
-      'assets/images/exterior-lawn.jpeg',
+      'assets/images/room-economy-2.jpeg',
+      'assets/images/room-classique-1.jpeg',
+      'assets/images/reception-1.jpeg',
     ],
   },
 };
