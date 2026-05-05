@@ -299,9 +299,29 @@ p {
   transition: width var(--transition);
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
+.nav-links .btn-primary {
+  background: var(--color-white) !important;
+  color: var(--color-olive) !important;
+  border-color: var(--color-white) !important;
+  padding: 10px 20px;
+}
+
+.nav-links .btn-primary:hover {
+  background: var(--color-gold) !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-gold) !important;
+}
+
+/* When scrolled — olive button with white text */
+.navbar.scrolled .nav-links .btn-primary {
+  background: var(--color-olive) !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-olive) !important;
+}
+
+.navbar.scrolled .nav-links .btn-primary:hover {
+  background: var(--color-gold) !important;
+  border-color: var(--color-gold) !important;
 }
 
 /* Hamburger menu for mobile */
