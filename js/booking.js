@@ -189,7 +189,7 @@ if (roomTitleEl) {
       const total = nights * room.price;
       nightsLabel.textContent = `${nights} night${nights > 1 ? 's' : ''} × ₦${room.price.toLocaleString()}`;
       totalAmtEl.textContent  = `₦${total.toLocaleString()}`;
-      window._bookingTotal    = total * 100; // convert to kobo for Paystack
+      window._bookingTotal    = total; // total in Naira (NOT kobo — GlobalPay uses Naira)
       window._bookingNights   = nights;
     }
   }
@@ -198,51 +198,38 @@ if (roomTitleEl) {
   checkOutEl.addEventListener('change', calculateTotal);
   calculateTotal();
 
-  /* ---- Update button label ---- */
+  /* ---- PAYMENT: GlobalPay (Zenith Bank) ----
+
+     HOW THIS WORKS:
+     ─────────────────────────────────────
+     1. Guest fills in name, email, phone and clicks Pay.
+     2. The browser sends those details to a small,
+        secure file that lives on Netlify's servers
+        (netlify/functions/create-payment.js).
+     3. That file talks to GlobalPay using the secret
+        API key (hidden from visitors) and asks for a
+        "checkout link".
+     4. GlobalPay sends back a checkout link — a secure
+        payment page where the guest can pay via Zenith
+        Bank transfer, card, or USSD.
+     5. The browser redirects the guest to that page.
+     6. After payment, GlobalPay redirects the guest
+        back to your site (configured in the GlobalPay
+        merchant dashboard under "Redirect URL").
+
+     The API key is NEVER visible here — it's stored
+     securely in Netlify's Environment Variables.
+  ------------------------------------------------ */
   const paystackBtn = document.getElementById('paystackBtn');
+
   if (paystackBtn) {
-    paystackBtn.innerHTML = `
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" style="flex-shrink:0">
-        <rect x="2" y="5" width="20" height="14" rx="2"/>
-        <line x1="2" y1="10" x2="22" y2="10"/>
-      </svg>
-      Pay via Zenith Bank Transfer
-    `;
-
-    /* ---- Paystack popup ----
-
-       HOW THE ZENITH BANK TRANSFER WORKS:
-       ─────────────────────────────────────
-       The key line is: channels: ['bank_transfer']
-
-       This tells Paystack to skip card/USSD and
-       go straight to the bank transfer screen.
-       Paystack then generates a VIRTUAL Zenith Bank
-       account number unique to this transaction.
-
-       The customer sees:
-         "Transfer ₦65,000 to:
-          Zenith Bank — 1234567890
-          Account Name: Madina Hotel"
-
-       They open their bank app, transfer the exact
-       amount, and Paystack confirms it automatically.
-       No manual checking needed on the hotel's end.
-
-       SETUP STEPS FOR THE CLIENT:
-       ────────────────────────────
-       1. Create account at dashboard.paystack.com
-       2. Go to Settings → Preferences
-       3. Under "Virtual Account Bank", select Zenith Bank
-       4. Copy your Public Key from Settings → API Keys
-       5. Paste it below where it says REPLACE_THIS
-    ------------------------------------------------ */
-    paystackBtn.addEventListener('click', () => {
+    paystackBtn.addEventListener('click', async () => {
 
       const name  = document.getElementById('guestName').value.trim();
       const email = document.getElementById('guestEmail').value.trim();
+      const phone = document.getElementById('guestPhone').value.trim();
 
+      // --- Validation ---
       if (!name) {
         showToast('⚠️ Please enter your full name');
         document.getElementById('guestName').focus();
@@ -253,58 +240,52 @@ if (roomTitleEl) {
         document.getElementById('guestEmail').focus();
         return;
       }
+      if (!phone || phone.length < 10) {
+        showToast('⚠️ Please enter a valid phone number');
+        document.getElementById('guestPhone').focus();
+        return;
+      }
       if (!window._bookingTotal || window._bookingTotal <= 0) {
         showToast('⚠️ Please select your check-in and check-out dates');
         return;
       }
 
-      const ref = `MADINA-${Date.now()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
+      // --- Show loading state ---
+      const originalLabel = paystackBtn.innerHTML;
+      paystackBtn.disabled = true;
+      paystackBtn.innerHTML = 'Redirecting to secure payment…';
 
-      const handler = PaystackPop.setup({
+      try {
+        // --- Call our secure Netlify Function ---
+        const response = await fetch('/.netlify/functions/create-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: name,
+            email:    email,
+            phone:    phone,
+            address:  `${room.name} booking — Madina Hotel, Uyo`,
+            amount:   window._bookingTotal, // in Naira
+          }),
+        });
 
-        // ⚠️ REPLACE THIS with your Paystack Public Key
-        // Get it from: dashboard.paystack.com → Settings → API Keys
-        // Looks like: pk_live_xxxxxxxxxxxxxxxxxxxxxxxx
-        key: 'pk_test_REPLACE_WITH_YOUR_PAYSTACK_PUBLIC_KEY',
+        const data = await response.json();
 
-        email:    email,
-        amount:   window._bookingTotal, // in kobo (Naira × 100)
-        currency: 'NGN',
-        ref:      ref,
-        label:    `${room.name} — Madina Hotel`,
-
-        // ✅ THIS IS WHAT TRIGGERS ZENITH BANK TRANSFER
-        // Paystack will show ONLY the bank transfer option
-        // and generate a Zenith virtual account number
-        channels: ['bank_transfer'],
-
-        metadata: {
-          custom_fields: [
-            { display_name: 'Guest Name',  variable_name: 'guest_name',  value: name },
-            { display_name: 'Room',        variable_name: 'room_type',   value: room.name },
-            { display_name: 'Check In',    variable_name: 'check_in',    value: checkInEl.value },
-            { display_name: 'Check Out',   variable_name: 'check_out',   value: checkOutEl.value },
-            { display_name: 'Nights',      variable_name: 'nights',      value: window._bookingNights },
-          ]
-        },
-
-        // ✅ Payment successful
-        callback: function(response) {
-          showToast(`✅ Booking confirmed! Ref: ${response.reference}`);
-          paystackBtn.innerHTML    = '✅ Booking Confirmed';
-          paystackBtn.disabled     = true;
-          paystackBtn.style.background   = '#2d7a3a';
-          paystackBtn.style.borderColor  = '#2d7a3a';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        },
-
-        // User closed popup without paying
-        onClose: function() {
-          showToast('Transfer cancelled. Your booking is not confirmed yet.');
+        if (data.checkoutUrl) {
+          // ✅ Redirect guest to GlobalPay's secure checkout
+          // (Zenith Bank transfer, card, USSD options appear here)
+          window.location.href = data.checkoutUrl;
+        } else {
+          showToast('⚠️ Could not start payment. Please try again or call us.');
+          paystackBtn.disabled = false;
+          paystackBtn.innerHTML = originalLabel;
         }
-      });
 
-      handler.openIframe();
+      } catch (err) {
+        showToast('⚠️ Network error. Please check your connection and try again.');
+        paystackBtn.disabled = false;
+        paystackBtn.innerHTML = originalLabel;
+      }
     });
   }
 
