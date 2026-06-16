@@ -270,19 +270,26 @@ if (roomTitleEl) {
         });
 
         const data = await response.json();
+        console.log('Payment response:', data); // visible in browser console (F12)
 
         if (data.checkoutUrl) {
           // ✅ Redirect guest to GlobalPay's secure checkout
-          // (Zenith Bank transfer, card, USSD options appear here)
           window.location.href = data.checkoutUrl;
         } else {
-          showToast('⚠️ Could not start payment. Please try again or call us.');
+          // Show the actual error so we can debug it
+          const errMsg = data?.globalpayResponse?.responseDescription
+            || data?.globalpayResponse?.message
+            || data?.error
+            || 'Could not start payment';
+          showToast(`⚠️ ${errMsg}. Please call +234 802 303 9293`);
+          console.error('GlobalPay error details:', data);
           paystackBtn.disabled = false;
           paystackBtn.innerHTML = originalLabel;
         }
 
       } catch (err) {
         showToast('⚠️ Network error. Please check your connection and try again.');
+        console.error('Network error:', err);
         paystackBtn.disabled = false;
         paystackBtn.innerHTML = originalLabel;
       }
