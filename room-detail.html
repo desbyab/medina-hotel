@@ -127,9 +127,14 @@
               <input type="text" id="guestName" placeholder="Your full name" />
             </div>
 
-            <div class="booking-card-field">
+            <div class="booking-card-field" style="margin-bottom: 12px;">
               <label for="guestEmail">Email Address *</label>
               <input type="email" id="guestEmail" placeholder="your@email.com" />
+            </div>
+
+            <div class="booking-card-field">
+              <label for="guestPhone">Phone Number *</label>
+              <input type="tel" id="guestPhone" placeholder="08012345678" />
             </div>
 
             <div class="booking-card-divider"></div>
@@ -142,11 +147,11 @@
             </div>
 
             <button class="btn btn-gold" id="paystackBtn">
-              🔒 Pay Now with Paystack
+              🔒 Pay with Zenith Bank (GlobalPay)
             </button>
 
             <p style="text-align:center; font-size: 0.72rem; color: var(--color-text-muted); margin-top: 12px;">
-              Secured by Paystack. You will not be charged until you confirm.
+              Secured by GlobalPay · Zenith Bank. You'll be redirected to complete payment.
             </p>
           </div>
 
@@ -216,8 +221,6 @@
 
   <div class="toast" id="toast"></div>
 
-  <!-- Paystack JS SDK — loads Paystack's secure payment popup -->
-  <script src="https://js.paystack.co/v1/inline.js"></script>
   <script src="js/main.js"></script>
   <script src="js/booking.js"></script>
 </body>
