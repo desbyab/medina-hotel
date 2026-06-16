@@ -1,109 +1,118 @@
 /* ============================================
-   create-payment.js
-   ============================================
-   WHAT THIS FILE DOES:
-   This is a tiny "back office" script that runs
-   on Netlify's servers — NOT in the browser.
-
-   The website (booking.js) sends booking details
-   here. This file then talks to GlobalPay
-   (Zenith Bank's payment gateway) using the
-   secret API key — which stays hidden on the
-   server and is never visible to website visitors.
-
-   GlobalPay responds with a "checkoutUrl" — a link
-   to a secure payment page (where Zenith Bank
-   transfer, card, USSD etc. are offered). This
-   file passes that link back to the website,
-   which then redirects the guest there.
-
-   WHERE THE API KEY LIVES:
-   The API key is NOT written in this file.
-   Instead, it's stored in Netlify's dashboard under:
-     Site configuration → Environment variables
-   as a variable named GLOBALPAY_API_KEY.
-   This file reads it securely at runtime using
-   process.env.GLOBALPAY_API_KEY.
+   create-payment.js — GlobalPay Nigeria
+   Zenith Bank Payment Gateway
    ============================================ */
 
 exports.handler = async function (event) {
 
-  // Only allow POST requests (booking submissions)
+  // Allow CORS so the browser can call this function
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',
+  };
+
+  // Handle preflight OPTIONS request from browser
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
   if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' }),
-    };
+    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
 
   try {
-    // 1. Read the booking details sent from the website
     const { fullName, email, phone, address, amount } = JSON.parse(event.body);
 
-    // 2. Basic validation
     if (!fullName || !email || !phone || !amount) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required booking details' }),
+        headers,
+        body: JSON.stringify({ error: 'Missing required fields', received: { fullName, email, phone, amount } }),
       };
     }
 
-    // 3. Get the secret API key from Netlify's environment variables
-    //    (set this in the Netlify dashboard — see deployment guide)
     const apiKey = process.env.GLOBALPAY_API_KEY;
 
     if (!apiKey) {
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: 'Payment gateway not configured. Missing API key.' }),
+        headers,
+        body: JSON.stringify({ error: 'API key not configured in Netlify environment variables' }),
       };
     }
 
-    // 4. Call GlobalPay's "Generate Payment Link" endpoint
-    const response = await fetch(
+    // GlobalPay Nigeria (Zenith Bank) endpoint
+    const gpResponse = await fetch(
       'https://paygw.globalpay.com.ng/globalpay-paymentgateway/api/paymentgateway/generate-payment-link',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'language': 'en',
-          'apikey': apiKey,
+          'language':     'en',
+          'apikey':       apiKey,
         },
         body: JSON.stringify({
-          FullName: fullName,
-          Currency: 'NGN',
-          Amount: amount,          // amount in Naira (e.g. 130000.00)
+          FullName:    fullName,
+          Currency:    'NGN',
+          Amount:      parseFloat(amount).toFixed(2),
           PhoneNumber: phone,
-          Address: address || 'Uyo, Akwa Ibom State, Nigeria',
-          Email: email,
-          apikey: apiKey.toLowerCase(), // GlobalPay docs require lowercase here
+          Address:     address || 'Uyo, Akwa Ibom, Nigeria',
+          Email:       email,
+          apikey:      apiKey,
         }),
       }
     );
 
-    const data = await response.json();
+    // Log the raw response for debugging
+    const rawText = await gpResponse.text();
+    console.log('GlobalPay raw response:', rawText);
+    console.log('GlobalPay status:', gpResponse.status);
 
-    // 5. If GlobalPay returns a checkout link, send it back to the website
-    if (data && data.data && data.data.checkoutUrl) {
+    let data;
+    try {
+      data = JSON.parse(rawText);
+    } catch (e) {
       return {
-        statusCode: 200,
-        body: JSON.stringify({ checkoutUrl: data.data.checkoutUrl }),
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ error: 'GlobalPay returned invalid response', raw: rawText }),
       };
     }
 
-    // 6. Otherwise, something went wrong — pass the error along
+    // Try different possible response structures
+    const checkoutUrl =
+      data?.data?.checkoutUrl ||
+      data?.checkoutUrl ||
+      data?.data?.CheckoutUrl ||
+      data?.CheckoutUrl ||
+      data?.data?.paymentUrl ||
+      data?.paymentUrl ||
+      null;
+
+    if (checkoutUrl) {
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ checkoutUrl }),
+      };
+    }
+
+    // Return full response so we can debug
     return {
       statusCode: 400,
+      headers,
       body: JSON.stringify({
-        error: 'Could not generate payment link',
-        details: data,
+        error: 'No checkout URL in response',
+        globalpayResponse: data,
       }),
     };
 
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
+      headers,
+      body: JSON.stringify({ error: err.message, stack: err.stack }),
     };
   }
 };
