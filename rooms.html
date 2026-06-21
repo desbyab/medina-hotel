@@ -60,9 +60,10 @@
           <label for="roomType">Room Type</label>
           <select id="roomType" name="roomType">
             <option value="all">All Rooms</option>
-            <option value="premium">Smart Premium</option>
-            <option value="classique">Smart Classique</option>
             <option value="economy">Smart Economy</option>
+            <option value="classique">Smart Classique</option>
+            <option value="premium">Smart Premium</option>
+            <option value="family">Smart Family</option>
           </select>
         </div>
         <div class="booking-field">
@@ -83,27 +84,27 @@
 
       <div class="rooms-grid" id="roomsGrid">
 
-        <!-- SMART PREMIUM -->
-        <div class="room-card" data-type="premium">
+        <!-- SMART ECONOMY -->
+        <div class="room-card" data-type="economy">
           <div class="room-card-image-wrap">
             <img
               class="room-card-image"
-              src="assets/images/entrance-day.jpeg"
-              alt="Smart Premium Room"
+              src="assets/images/room-classique-2.jpeg"
+              alt="Smart Economy Room"
             />
-            <span class="room-card-badge">Most Popular</span>
+            <span class="room-card-badge" style="background: var(--color-gold);">Best Value</span>
           </div>
           <div class="room-card-body">
-            <h3 class="room-card-title">Smart Premium</h3>
+            <h3 class="room-card-title">Smart Economy</h3>
             <div class="room-card-meta">
               <span>👤 2 Adults</span>
-              <span>📐 50.3 m²</span>
-              <span>🛏 6×7 Bed</span>
+              <span>📐 30.8 m²</span>
+              <span>🛏 6×4 Bed</span>
             </div>
             <p class="room-card-desc">
-              Our most spacious offering — a premium room featuring a king-size
-              6×7 bed, expansive living area, work desk, and premium finishes.
-              Perfect for business and leisure guests who want the very best.
+              Comfortable and practical, the Economy room delivers everything
+              you need for a restful stay — WiFi, AC, hot water — at excellent
+              value for money.
             </p>
             <div class="room-card-amenities">
               <span class="amenity-tag">Free WiFi</span>
@@ -111,13 +112,12 @@
               <span class="amenity-tag">Water Heater</span>
               <span class="amenity-tag">Breakfast</span>
               <span class="amenity-tag">Flat Screen TV</span>
-              <span class="amenity-tag">Work Desk</span>
             </div>
             <div class="room-card-footer">
               <div>
-                <div class="room-price">₦65,000 <span>/ Night</span></div>
+                <div class="room-price">$55 <span>/ Night</span></div>
               </div>
-              <a href="room-detail.html?type=premium" class="btn btn-primary">Book Now</a>
+              <a href="room-detail.html?type=economy" class="btn btn-primary">Book Now</a>
             </div>
           </div>
         </div>
@@ -153,34 +153,34 @@
             </div>
             <div class="room-card-footer">
               <div>
-                <div class="room-price">₦55,000 <span>/ Night</span></div>
+                <div class="room-price">$65 <span>/ Night</span></div>
               </div>
               <a href="room-detail.html?type=classique" class="btn btn-primary">Book Now</a>
             </div>
           </div>
         </div>
 
-        <!-- SMART ECONOMY -->
-        <div class="room-card" data-type="economy">
+        <!-- SMART PREMIUM -->
+        <div class="room-card" data-type="premium">
           <div class="room-card-image-wrap">
             <img
               class="room-card-image"
-              src="assets/images/room-classique-2.jpeg"
-              alt="Smart Economy Room"
+              src="assets/images/entrance-day.jpeg"
+              alt="Smart Premium Room"
             />
-            <span class="room-card-badge" style="background: var(--color-gold);">Best Value</span>
+            <span class="room-card-badge">Most Popular</span>
           </div>
           <div class="room-card-body">
-            <h3 class="room-card-title">Smart Economy</h3>
+            <h3 class="room-card-title">Smart Premium</h3>
             <div class="room-card-meta">
               <span>👤 2 Adults</span>
-              <span>📐 30.8 m²</span>
-              <span>🛏 6×4 Bed</span>
+              <span>📐 50.3 m²</span>
+              <span>🛏 6×7 Bed</span>
             </div>
             <p class="room-card-desc">
-              Comfortable and practical, the Economy room delivers everything
-              you need for a restful stay — WiFi, AC, hot water — at excellent
-              value for money.
+              Our most spacious offering — a premium room featuring a king-size
+              6×7 bed, expansive living area, work desk, and premium finishes.
+              Perfect for business and leisure guests who want the very best.
             </p>
             <div class="room-card-amenities">
               <span class="amenity-tag">Free WiFi</span>
@@ -188,12 +188,51 @@
               <span class="amenity-tag">Water Heater</span>
               <span class="amenity-tag">Breakfast</span>
               <span class="amenity-tag">Flat Screen TV</span>
+              <span class="amenity-tag">Work Desk</span>
             </div>
             <div class="room-card-footer">
               <div>
-                <div class="room-price">₦45,000 <span>/ Night</span></div>
+                <div class="room-price">$70 <span>/ Night</span></div>
               </div>
-              <a href="room-detail.html?type=economy" class="btn btn-primary">Book Now</a>
+              <a href="room-detail.html?type=premium" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SMART FAMILY -->
+        <div class="room-card" data-type="family">
+          <div class="room-card-image-wrap">
+            <img
+              class="room-card-image"
+              src="assets/images/room-premium-2.jpeg"
+              alt="Smart Family Room"
+            />
+            <span class="room-card-badge" style="background: var(--color-olive-mid);">Family</span>
+          </div>
+          <div class="room-card-body">
+            <h3 class="room-card-title">Smart Family</h3>
+            <div class="room-card-meta">
+              <span>👤 4 Adults</span>
+              <span>📐 65.0 m²</span>
+              <span>🛏 Multiple Beds</span>
+            </div>
+            <p class="room-card-desc">
+              Spacious and fully equipped for families — multiple beds, generous
+              living area, complimentary breakfast for all guests, and full access
+              to all hotel facilities including the pool and restaurant.
+            </p>
+            <div class="room-card-amenities">
+              <span class="amenity-tag">Free WiFi</span>
+              <span class="amenity-tag">AC</span>
+              <span class="amenity-tag">Pool Access</span>
+              <span class="amenity-tag">Breakfast</span>
+              <span class="amenity-tag">Multiple Beds</span>
+            </div>
+            <div class="room-card-footer">
+              <div>
+                <div class="room-price">$100 <span>/ Night</span></div>
+              </div>
+              <a href="room-detail.html?type=family" class="btn btn-primary">Book Now</a>
             </div>
           </div>
         </div>
@@ -259,9 +298,10 @@
         <div class="footer-col">
           <h5>Room Types</h5>
           <ul>
-            <li><a href="room-detail.html?type=premium">Smart Premium — ₦65,000</a></li>
-            <li><a href="room-detail.html?type=classique">Smart Classique — ₦55,000</a></li>
-            <li><a href="room-detail.html?type=economy">Smart Economy — ₦45,000</a></li>
+            <li><a href="room-detail.html?type=economy">Smart Economy — $55</a></li>
+            <li><a href="room-detail.html?type=classique">Smart Classique — $65</a></li>
+            <li><a href="room-detail.html?type=premium">Smart Premium — $70</a></li>
+            <li><a href="room-detail.html?type=family">Smart Family — $100</a></li>
           </ul>
         </div>
         <div class="footer-col">
