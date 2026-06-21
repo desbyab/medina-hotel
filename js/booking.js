@@ -149,7 +149,7 @@ if (roomTitleEl) {
   document.title = `${room.name} — Madina Hotel & Residences`;
   document.getElementById('breadcrumbName').textContent = room.name;
   document.getElementById('roomTitle').textContent      = room.name;
-  document.getElementById('cardPrice').textContent      = `₦${room.price.toLocaleString()}`;
+  document.getElementById('cardPrice').textContent = `$${room.price}`;
 
   const descEl = document.getElementById('roomDesc');
   if (descEl) {
@@ -218,9 +218,9 @@ if (roomTitleEl) {
 
     if (nights > 0) {
       const total = nights * room.price;
-      nightsLabel.textContent = `${nights} night${nights > 1 ? 's' : ''} × ₦${room.price.toLocaleString()}`;
-      totalAmtEl.textContent  = `₦${total.toLocaleString()}`;
-      window._bookingTotal    = total; // total in Naira (NOT kobo — GlobalPay uses Naira)
+      nightsLabel.textContent = `${nights} night${nights > 1 ? 's' : ''} × $${room.price}`;
+      totalAmtEl.textContent  = `$${total.toLocaleString()}`;
+      window._bookingTotal    = total; // in USD
       window._bookingNights   = nights;
     }
   }
