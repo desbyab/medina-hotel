@@ -10,7 +10,7 @@
 const ROOMS = {
   premium: {
     name:        'Smart Premium',
-    price:       65000,
+    price:       70,
     size:        '50.3 m²',
     bed:         '6 × 7 King',
     guests:      2,
@@ -34,15 +34,15 @@ const ROOMS = {
     ],
     images: [
       'assets/images/room-premium-1.jpeg',
-      'assets/images/room-classique-1.jpeg',
       'assets/images/room-premium-2.jpeg',
-      'assets/images/room-premium-3.jpeg',
+      'assets/images/reception-3.jpeg',
+      'assets/images/reception-1.jpeg',
     ],
   },
 
   classique: {
     name:        'Smart Classique',
-    price:       55000,
+    price:       65,
     size:        '43.4 m²',
     bed:         '6 × 6 Queen',
     guests:      2,
@@ -72,7 +72,7 @@ const ROOMS = {
 
   economy: {
     name:        'Smart Economy',
-    price:       45000,
+    price:       55,
     size:        '30.8 m²',
     bed:         '6 × 4 Standard',
     guests:      2,
@@ -96,6 +96,37 @@ const ROOMS = {
       'assets/images/room-economy-2.jpeg',
       'assets/images/room-classique-1.jpeg',
       'assets/images/reception-1.jpeg',
+    ],
+  },
+
+  family: {
+    name:        'Smart Family',
+    price:       100,
+    size:        '65.0 m²',
+    bed:         'Multiple Beds',
+    guests:      4,
+    description: `The Smart Family room is designed with families in mind — spacious, comfortable,
+    and fully equipped for an extended stay. Featuring multiple beds, a generous living area, and
+    thoughtful amenities for guests of all ages, this room ensures the whole family feels right at
+    home. Complimentary breakfast for all guests, free WiFi, air conditioning, and full access to
+    the pool, restaurant, and all hotel facilities make this the perfect base for a family getaway
+    in the heart of Uyo, Akwa Ibom.`,
+    amenities: [
+      { icon: '📶', label: 'Free High-Speed WiFi' },
+      { icon: '❄️', label: 'Air Conditioning' },
+      { icon: '🚿', label: 'Hot Water Shower' },
+      { icon: '📺', label: 'Flat-Screen TV' },
+      { icon: '☕', label: 'Complimentary Breakfast' },
+      { icon: '🛁', label: 'En-Suite Bathroom' },
+      { icon: '🧴', label: 'Quality Toiletries' },
+      { icon: '🏊', label: 'Pool Access' },
+      { icon: '🛏', label: 'Multiple Beds' },
+    ],
+    images: [
+      'assets/images/room-premium-1.jpeg',
+      'assets/images/room-premium-2.jpeg',
+      'assets/images/pool-day.jpeg',
+      'assets/images/reception-3.jpeg',
     ],
   },
 };
