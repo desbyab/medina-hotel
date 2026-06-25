@@ -5,14 +5,12 @@
 
 exports.handler = async function (event) {
 
-  // Allow CORS so the browser can call this function
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Content-Type': 'application/json',
   };
 
-  // Handle preflight OPTIONS request from browser
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers, body: '' };
   }
@@ -28,7 +26,7 @@ exports.handler = async function (event) {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ error: 'Missing required fields', received: { fullName, email, phone, amount } }),
+        body: JSON.stringify({ error: 'Missing required fields' }),
       };
     }
 
@@ -38,11 +36,10 @@ exports.handler = async function (event) {
       return {
         statusCode: 500,
         headers,
-        body: JSON.stringify({ error: 'API key not configured in Netlify environment variables' }),
+        body: JSON.stringify({ error: 'API key not configured' }),
       };
     }
 
-    // GlobalPay Nigeria (Zenith Bank) endpoint
     const gpResponse = await fetch(
       'https://paygw.globalpay.com.ng/globalpay-paymentgateway/api/paymentgateway/generate-payment-link',
       {
@@ -50,21 +47,24 @@ exports.handler = async function (event) {
         headers: {
           'Content-Type': 'application/json',
           'language':     'en',
-          'apikey':       apiKey,
+          'apiKey':       apiKey,
         },
         body: JSON.stringify({
-          FullName:    fullName,
-          Currency:    'NGN',
-          Amount:      parseFloat(amount).toFixed(2),
-          PhoneNumber: phone,
-          Address:     address || 'Uyo, Akwa Ibom, Nigeria',
-          Email:       email,
-          apikey:      apiKey,
+          amount: parseFloat(amount).toFixed(2),
+          merchantTransactionReference: `MADINA-${Date.now()}`,
+          redirectUrl: 'https://madina-hotel-uyo.netlify.app/index.html',
+          customer: {
+            firstName:    fullName.split(' ')[0],
+            lastName:     fullName.split(' ').slice(1).join(' ') || fullName,
+            currency:     'USD',
+            phoneNumber:  phone,
+            address:      address || 'Uyo, Akwa Ibom, Nigeria',
+            emailAddress: email,
+          },
         }),
       }
     );
 
-    // Log the raw response for debugging
     const rawText = await gpResponse.text();
     console.log('GlobalPay raw response:', rawText);
     console.log('GlobalPay status:', gpResponse.status);
@@ -80,7 +80,6 @@ exports.handler = async function (event) {
       };
     }
 
-    // Try different possible response structures
     const checkoutUrl =
       data?.data?.checkoutUrl ||
       data?.checkoutUrl ||
@@ -98,7 +97,6 @@ exports.handler = async function (event) {
       };
     }
 
-    // Return full response so we can debug
     return {
       statusCode: 400,
       headers,
@@ -112,7 +110,7 @@ exports.handler = async function (event) {
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: err.message, stack: err.stack }),
+      body: JSON.stringify({ error: err.message }),
     };
   }
 };
