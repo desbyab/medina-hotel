@@ -64,7 +64,7 @@ exports.handler = async function (event) {
       customer: {
         firstName,
         lastName,
-        currency: "USD",
+        currency: "NGN",
         phoneNumber: phone,
         address: address || "Uyo, Akwa Ibom, Nigeria",
         emailAddress: email,
