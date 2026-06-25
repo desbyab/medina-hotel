@@ -1,22 +1,31 @@
 /* ============================================
    create-payment.js — GlobalPay Nigeria
    Zenith Bank Payment Gateway
-   ============================================ */
+============================================ */
 
 exports.handler = async function (event) {
-
   const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json',
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json",
   };
 
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers,
+      body: "",
+    };
   }
 
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({
+        error: "Method not allowed",
+      }),
+    };
   }
 
   try {
@@ -26,7 +35,9 @@ exports.handler = async function (event) {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ error: 'Missing required fields' }),
+        body: JSON.stringify({
+          error: "Missing required fields",
+        }),
       };
     }
 
@@ -36,81 +47,93 @@ exports.handler = async function (event) {
       return {
         statusCode: 500,
         headers,
-        body: JSON.stringify({ error: 'API key not configured' }),
+        body: JSON.stringify({
+          error: "GLOBALPAY_API_KEY is missing from Netlify environment variables",
+        }),
       };
     }
 
+    const firstName = fullName.trim().split(" ")[0];
+    const lastName =
+      fullName.trim().split(" ").slice(1).join(" ") || ".";
+
+    const payload = {
+      amount: Number(amount),
+      merchantTransactionReference: `MADINA-${Date.now()}`,
+      redirectUrl: "https://madina-hotel-uyo.netlify.app/index.html",
+      customer: {
+        firstName,
+        lastName,
+        currency: "USD",
+        phoneNumber: phone,
+        address: address || "Uyo, Akwa Ibom, Nigeria",
+        emailAddress: email,
+      },
+    };
+
+    console.log("Sending GlobalPay payload:");
+    console.log(JSON.stringify(payload, null, 2));
+
     const gpResponse = await fetch(
-      'https://paygw.globalpay.com.ng/globalpay-paymentgateway/api/paymentgateway/generate-payment-link',
+      "https://paygw.globalpay.com.ng/globalpay-paymentgateway/api/paymentgateway/generate-payment-link",
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'language':     'en',
-          'apiKey':       apiKey,
+          "Content-Type": "application/json",
+          "language": "en",
+          "apikey": apiKey,
         },
-        body: JSON.stringify({
-          amount: parseFloat(amount).toFixed(2),
-          merchantTransactionReference: `MADINA-${Date.now()}`,
-          redirectUrl: 'https://madina-hotel-uyo.netlify.app/index.html',
-          customer: {
-            firstName:    fullName.split(' ')[0],
-            lastName:     fullName.split(' ').slice(1).join(' ') || fullName,
-            currency:     'USD',
-            phoneNumber:  phone,
-            address:      address || 'Uyo, Akwa Ibom, Nigeria',
-            emailAddress: email,
-          },
-        }),
+        body: JSON.stringify(payload),
       }
     );
 
     const rawText = await gpResponse.text();
-    console.log('GlobalPay raw response:', rawText);
-    console.log('GlobalPay status:', gpResponse.status);
+
+    console.log("GlobalPay HTTP Status:", gpResponse.status);
+    console.log("GlobalPay Raw Response:", rawText);
 
     let data;
+
     try {
       data = JSON.parse(rawText);
-    } catch (e) {
+    } catch (err) {
       return {
         statusCode: 500,
         headers,
-        body: JSON.stringify({ error: 'GlobalPay returned invalid response', raw: rawText }),
+        body: JSON.stringify({
+          error: "GlobalPay returned invalid JSON",
+          rawResponse: rawText,
+        }),
       };
     }
 
-    const checkoutUrl =
-      data?.data?.checkoutUrl ||
-      data?.checkoutUrl ||
-      data?.data?.CheckoutUrl ||
-      data?.CheckoutUrl ||
-      data?.data?.paymentUrl ||
-      data?.paymentUrl ||
-      null;
-
-    if (checkoutUrl) {
+    if (gpResponse.ok && data?.isSuccessful && data?.data?.checkoutUrl) {
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ checkoutUrl }),
+        body: JSON.stringify({
+          checkoutUrl: data.data.checkoutUrl,
+        }),
       };
     }
 
     return {
-      statusCode: 400,
+      statusCode: gpResponse.status || 400,
       headers,
       body: JSON.stringify({
-        error: 'No checkout URL in response',
+        error: "GlobalPay payment link generation failed",
         globalpayResponse: data,
       }),
     };
-
   } catch (err) {
+    console.error(err);
+
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: err.message }),
+      body: JSON.stringify({
+        error: err.message,
+      }),
     };
   }
 };
